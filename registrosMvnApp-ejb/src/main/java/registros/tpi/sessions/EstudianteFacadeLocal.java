@@ -16,11 +16,11 @@ import registros.tpi.registrolibreria.Estudiante;
 @Local
 public interface EstudianteFacadeLocal {
 
-    void create(Estudiante estudiante);
+    boolean create(Estudiante estudiante);
 
-    void edit(Estudiante estudiante);
+    boolean edit(Estudiante estudiante);
 
-    void remove(Estudiante estudiante);
+    boolean remove(Estudiante estudiante);
 
     Estudiante find(Object id);
 

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
       <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -26,7 +27,7 @@
                         <p:column headerText="Nombre">
                             <p:outputLabel value="#{p.nombreCompleto}"></p:outputLabel>
                         </p:column>
-           
+               <p:ajax update=":vistaEditar" event="rowSelect"></p:ajax>
                     </p:dataTable>    
                     <p:growl id="growl" life="2000" />
                     
@@ -34,6 +35,41 @@
                 
             </h:panelGrid>
         </p:panel>
+        
+        <div>
+            <p:panel id="panelPersona">
+        <h:form id="vistaEditar" style="text-align: center" >         
+            <p:panelGrid columns="2" style="text-align:  center" >
+                
+                <p:outputLabel value="DUI" for="txtDui" id="lblDui"/>
+                <p:inputText id="txtDui"  value="#{frmPersona.registroPersona.dui}" required="true"></p:inputText>
+               
+                <p:outputLabel value="Nombre" for="txtNombre" id="lblNombre"></p:outputLabel>
+                <p:inputText id="txtNombre"  value="#{frmPersona.registroPersona.nombreCompleto}" required="true"></p:inputText>
+                
+                
+                <p:commandButton value="Nuevo" actionListener="#{frmPersona.btnNuevoAction}" update=":vistaEditar">
+                </p:commandButton>
+                <p:commandButton value="Modificar" actionListener="#{frmPersona.btnModificarAction}" update=":tablaPersona :vistaEditar" ></p:commandButton>                
+                <p:commandButton value="Guardar" actionListener="#{frmPersona.btnGuardarAction}" update=":tablaPersona :vistaEditar"></p:commandButton> 
+                <p:commandButton value="Eliminar" actionListener="#{frmPersona.btnEliminarAction}" update=":tablaPersona :vistaEditar">
+                    <p:confirm header="Confirmacion" message="¿Está seguro que desea eliminar este elemento?" icon="ui-icon-alert" />
+                </p:commandButton>
+            </p:panelGrid>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+          </p:confirmDialog>
+        </h:form>
+            </p:panel>
+        </div>
+        
+        
+        
+        
+        
+        
+        
     </h:body>
 </html>
 
