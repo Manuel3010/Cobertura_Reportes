@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:p="http://primefaces.org/ui" >
+      <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <p:panel header="Personas" closable="false" toggleable="false" >
+            <h:panelGrid>
+                <h:form id="tablaPersona">
+                    <p:dataTable value="#{frmPersona.modelo}"
+                                 var="p"
+                                 rows="10"
+                                 paginator="true"
+                                 lazy="true"
+                                 selectionMode="single"
+                                 selection="#{frmPersona.registroPersona}"
+                                 
+                                 widgetVar="dtPersona"
+                                 >
+                        <p:column headerText="DUI">
+                            <p:outputLabel value="#{p.dui}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{p.nombreCompleto}"></p:outputLabel>
+                        </p:column>
+           
+                    </p:dataTable>    
+                    <p:growl id="growl" life="2000" />
+                    
+                </h:form>
+                
+            </h:panelGrid>
+        </p:panel>
+    </h:body>
+</html>
+
