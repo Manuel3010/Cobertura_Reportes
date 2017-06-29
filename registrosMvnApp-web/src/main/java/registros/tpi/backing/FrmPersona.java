@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package registros.tpi.Backing;
+package registros.tpi.backing;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import registros.tpi.Sessions.PersonaFacadeLocal;
+import registros.tpi.sessions.PersonaFacadeLocal;
 
 import registros.tpi.registrolibreria.Persona;
 

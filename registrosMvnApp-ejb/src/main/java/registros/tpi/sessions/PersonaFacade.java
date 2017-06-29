@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package registros.tpi.Sessions;
+package registros.tpi.sessions;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
