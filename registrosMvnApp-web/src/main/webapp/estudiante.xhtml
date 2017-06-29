@@ -2,16 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
- 
-    <p:panel header="Estudiantes" closable="false" toggleable="false" >
+       
+
+        <p:panel header="Estudiantes" closable="false" toggleable="false" >
             <h:panelGrid>
-                <h:form id="tablaEstudiante">
+                <h:form id="tablaEstudiantes">
                     <p:dataTable value="#{frmEstudiante.modelo}"
                                  var="estudiante"
                                  rows="10"
@@ -19,7 +20,7 @@
                                  lazy="true"
                                  selectionMode="single"
                                  selection="#{frmEstudiante.registroEstudiante}"
-                                 
+
                                  widgetVar="dtEstudiante"
                                  >
                         <p:column headerText="Carnet">
@@ -28,19 +29,53 @@
                         <p:column headerText="Nombre">
                             <p:outputLabel value="#{estudiante.dui.nombreCompleto}"></p:outputLabel>
                         </p:column>
-           
+
                         <p:column headerText="Carrera">
                             <p:outputLabel value="#{estudiante.carrera}"></p:outputLabel>
                         </p:column>
-                       
+                    <p:ajax update=":vistaEditarEstudiante" event="rowSelect"></p:ajax>
                     </p:dataTable>    
                     <p:growl id="growl" life="2000" />
-                    
+
                 </h:form>
-                
+
             </h:panelGrid>
         </p:panel>
-        
+
+        <p:panel id="panelEstudiante">
+            <h:form id="vistaEditarEstudiante">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="CARNET" for="txtCarnet" id="lblCarnet"></p:outputLabel>
+                    <p:inputText id="txtCarnet" value="#{frmEstudiante.registroEstudiante.carnet}" required="true"></p:inputText>
+
+                    <p:outputLabel value="Nombre" for="cbNombre" id="lblNombree"></p:outputLabel>
+                    <h:selectOneListbox id="cbNombre" value="#{frmEstudiante.personaSeleccionado}" 
+                                        style="width: 200px" required="true" styleClass="center_content" size="1" >
+                        <f:selectItem itemLabel="Seleccione una persona" itemValue="" />
+                        <f:selectItems value="#{frmEstudiante.personas}" 
+                                       var="persona" 
+                                       itemLabel="#{persona.nombreCompleto}" 
+                                       itemValue="#{persona.dui}">
+                        </f:selectItems>
+                    </h:selectOneListbox>
+
+                    <p:outputLabel value="Carrera" for="txtCarrera" id="lblNombreR"></p:outputLabel>
+                    <p:inputText id="txtCarrera" value="#{frmEstudiante.registroEstudiante.carrera}" required="true"></p:inputText>
+                    <p:commandButton value="Nuevo" actionListener="#{frmEstudiante.btnNuevoAction}" update=":vistaEditarEstudiante">    
+                    </p:commandButton>
+                    <p:commandButton value="Modificar" actionListener="#{frmEstudiante.btnModificarAction}" update=":tablaEstudiantes :vistaEditarEstudiante" ></p:commandButton>                
+                    <p:commandButton value="Guardar" actionListener="#{frmEstudiante.btnGuardarAction}" update=":tablaEstudiantes :vistaEditarEstudiante" ></p:commandButton> 
+                    <p:commandButton value="Eliminar" actionListener="#{frmEstudiante.btnEliminarAction}" update=":tablaEstudiantes :vistaEditarEstudiante">
+                        <p:confirm header="Confirmación" message="¿Está seguro que desea eliminar este elemento?" icon="ui-icon-alert" />
+                    </p:commandButton>          
+                </p:panelGrid> 
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+
+            </h:form>
+        </p:panel>  
     </h:body>
 </html>
 
