@@ -37,8 +37,8 @@ public class FrmPersona implements Serializable {
     /**
      * Creates a new instance of FrmPersona
      */
-    public FrmPersona() {
-    }
+  /*  public FrmPersona() {
+    }*/
     
     @PostConstruct
     public void init(){

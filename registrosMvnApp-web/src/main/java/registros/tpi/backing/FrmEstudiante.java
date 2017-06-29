@@ -35,9 +35,9 @@ public class FrmEstudiante implements Serializable{
     /**
      * Creates a new instance of FrmEstudiante
      */
-    public FrmEstudiante() {
+  /*  public FrmEstudiante() {
     }
-    
+    */
      @PostConstruct
     public void init(){
         
